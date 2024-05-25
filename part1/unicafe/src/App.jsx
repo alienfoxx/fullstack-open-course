@@ -1,5 +1,27 @@
 import { useState } from "react";
 
+// eslint-disable-next-line react/prop-types
+const Statistics = ({
+  good,
+  neutral,
+  bad,
+  allfeadbacks,
+  average,
+  positive,
+}) => {
+  return (
+    <div>
+      <h1>Statistics</h1>
+      <p>good{good}</p>
+      <p>neutral{neutral}</p>
+      <p>bad{bad}</p>
+      <p>All {allfeadbacks}</p>
+      <p>Average{average}</p>
+      <p>Positive {positive}%</p>
+    </div>
+  );
+};
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0);
@@ -47,13 +69,14 @@ const App = () => {
         bad
       </button>
       <div className="result">
-        <h1>Statistics</h1>
-        <p>good{good}</p>
-        <p>neutral{neutral}</p>
-        <p>bad{bad}</p>
-        <p>All {allfeadbacks}</p>
-        <p>Average{average}</p>
-        <p>Positive {positive}%</p>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          allfeadbacks={allfeadbacks}
+          average={average}
+          positive={positive}
+        />
       </div>
     </div>
   );
