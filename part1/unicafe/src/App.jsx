@@ -1,6 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
+const StatisticLine = ({ text, value }) => {
+  return (
+    <p>
+      {text}: {value}
+    </p>
+  );
+};
+
 const Statistics = ({
   good,
   neutral,
@@ -12,14 +20,18 @@ const Statistics = ({
   return (
     <div>
       <h1>Statistics</h1>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>All Feedbacks: {allFeedbacks}</p>
-      <p>Average: {average}</p>
-      <p>Positive: {positive}%</p>
+      <StatisticLine text="Good" value={good} />
+      <StatisticLine text="Neutral" value={neutral} />
+      <StatisticLine text="Bad" value={bad} />
+      <StatisticLine text="All Feedbacks" value={allFeedbacks} />
+      <StatisticLine text="Average" value={average} />
+      <StatisticLine text="Positive" value={`${positive}%`} />
     </div>
   );
+};
+
+const Button = ({ text, handleClick }) => {
+  return <button onClick={handleClick}>{text}</button>;
 };
 
 const App = () => {
@@ -38,36 +50,33 @@ const App = () => {
     <div>
       <div className="action">
         <h1>Give Feedback</h1>
-        <button
-          onClick={() => {
+        <Button
+          text="Good"
+          handleClick={() => {
             setGood(good + 1);
             setAllFeedbacks(allFeedbacks + 1);
-            setAverage(average + 1);
+            setAverage(average + 1 / 100);
             setPositive(handlePositive());
           }}
-        >
-          Good
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Button
+          text="Neutral"
+          handleClick={() => {
             setNeutral(neutral + 1);
             setAllFeedbacks(allFeedbacks + 1);
             setAverage(average);
             setPositive(handlePositive());
           }}
-        >
-          Neutral
-        </button>
-        <button
-          onClick={() => {
+        />
+        <Button
+          text="Bad"
+          handleClick={() => {
             setBad(bad + 1);
             setAllFeedbacks(allFeedbacks + 1);
-            setAverage(average - 1);
+            setAverage(average - 1 / 100);
             setPositive(handlePositive());
           }}
-        >
-          Bad
-        </button>
+        />
       </div>
 
       {allFeedbacks > 0 ? (
