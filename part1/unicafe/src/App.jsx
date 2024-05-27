@@ -18,15 +18,17 @@ const Statistics = ({
   positive,
 }) => {
   return (
-    <div>
-      <h1>Statistics</h1>
-      <StatisticLine text="Good" value={good} />
-      <StatisticLine text="Neutral" value={neutral} />
-      <StatisticLine text="Bad" value={bad} />
-      <StatisticLine text="All Feedbacks" value={allFeedbacks} />
-      <StatisticLine text="Average" value={average} />
-      <StatisticLine text="Positive" value={`${positive}%`} />
-    </div>
+    <table>
+      <tbody>
+        <h1>Statistics</h1>
+        <StatisticLine text="Good" value={good} />
+        <StatisticLine text="Neutral" value={neutral} />
+        <StatisticLine text="Bad" value={bad} />
+        <StatisticLine text="All Feedbacks" value={allFeedbacks} />
+        <StatisticLine text="Average" value={average} />
+        <StatisticLine text="Positive" value={`${positive}%`} />
+      </tbody>
+    </table>
   );
 };
 
