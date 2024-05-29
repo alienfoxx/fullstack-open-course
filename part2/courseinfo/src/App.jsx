@@ -1,7 +1,18 @@
 /* eslint-disable react/prop-types */
 const Header = ({ course }) => <h1>{course}</h1>;
 
-const Total = ({ sum }) => <p>Number of exercises {sum}</p>;
+const Total = ({ some, parts }) => {
+  return (
+    <div>
+      <p> total of 
+
+          {parts.reduce((total, some) => {
+          return total + some.exercises;
+        }, 0)} exercises
+      </p> 
+    </div>
+  );
+};
 
 const Part = ({ part }) => (
   <p>
@@ -10,19 +21,20 @@ const Part = ({ part }) => (
 );
 
 const Content = ({ parts }) => {
-  return(
-  <div>
-    {parts.map((part) => (
-      <Part key={part.id} part={part} />
-    ))}
-  </div>
-  )
+  return (
+    <div>
+      {parts.map((part) => (
+        <Part key={part.id} part={part} />
+      ))}
+    </div>
+  );
 };
 const Course = ({ course }) => {
   return (
     <div>
       <Header course={course.name} />
       <Content parts={course.parts} />
+      <Total parts={course.parts} some={course.parts} />
     </div>
   );
 };
