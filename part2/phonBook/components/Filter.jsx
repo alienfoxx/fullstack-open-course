@@ -1,17 +1,11 @@
-// import React, { useState } from 'react'
+import React from 'react'
 
-// function Filter() {
+const Filter = ({value, onChange}) => {
+  return (
+    <div>
+        filter shown with<input type="text" onChange={onChange} value={value} />
+    </div>
+  )
+}
 
-  
-//   return (
-//     <div>
-//       <input
-//       type='text'
-//       placeholder='Search ...'
-//       />
-      
-//     </div>
-//   )
-// }
-
-// export default Filter
+export default Filter

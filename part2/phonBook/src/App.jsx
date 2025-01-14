@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Filter from "../components/Filter";
+import PersonFrom from "../components/PersonFrom";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -11,7 +13,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
 
-  const handleChange = (event) => {
+  const handleNameChange = (event) => {
     setNewName(event.target.value);
   };
 
@@ -41,13 +43,14 @@ const App = () => {
     setFilter(newFilter);
 
     if (!newFilter) {
-      console.log("input empty")
+      console.log("input empty");
       setPersons(persons);
-     
+
       return;
     }
     const regex = new RegExp(newFilter, "i");
-    const filtredPersone = () => persons.filter((person) => person.name.match(regex));
+    const filtredPersone = () =>
+      persons.filter((person) => person.name.match(regex));
     setPersons(filtredPersone);
 
     console.log(event.target);
@@ -56,22 +59,17 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      filter shown with<input type="text" onChange={handleFilterChange} value={filter} />
-
+      {/* filter shown with<input type="text" onChange={handleFilterChange} value={filter} /> */}
+      <Filter onChange={handleFilterChange} value={filter} />
       <h1>add a new</h1>
-      <form>
-        <div>
-          name: <input onChange={handleChange} value={newName} />
-        </div>
-        <div>
-          number: <input onChange={handleNumberChange} value={newNumber} />
-        </div>
-        <div>
-          <button onClick={handleSubmit} type="submit">
-            add
-          </button>
-        </div>
-      </form>
+      
+      <PersonFrom
+        onSubmit={handleSubmit}
+        newName={newName}
+        handleNameChange={handleNameChange}
+        newNumber={newNumber}
+        handleNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
       {persons.map((person, newName) => {
         return (
