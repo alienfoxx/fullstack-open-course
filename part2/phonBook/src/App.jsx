@@ -41,13 +41,12 @@ const App = () => {
       number: newNumber,
     };
 
-    if (!JSON.stringify(persons).includes(newName)) {
-      setPersons(persons.concat(nameObj));
+   
+    axios.post("http://localhost:3001/persons", nameObj).then((response) => {
+      setPersons(persons.concat(response.data));
       setNewName("");
       setNewNumber("");
-    } else {
-      alert(`${newName} is already added to phonebook`);
-    }
+    });
   };
 
   const handleFilterChange = (event) => {
